@@ -1,0 +1,318 @@
+/* public/style.css */
+
+/* --- Cài đặt cơ bản & Font --- */
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+/* --- Header --- */
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#header-logo {
+    max-height: 45px;
+    width: auto;
+    margin-right: 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* --- Khu vực nội dung chính --- */
+main {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 1rem 2rem 2rem 2rem;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* --- Điều hướng Tab --- */
+.tab {
+    overflow: hidden;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 2;
+}
+
+.tab button {
+    background-color: #e9ecef;
+    color: #6c757d;
+    float: left;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px 8px 0 0;
+    margin-right: 5px;
+    font-weight: 600;
+}
+
+.tab button:hover {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+}
+
+.tab button.active {
+    background-color: #FFFFFF;
+    color: #e67e22;
+    border-top: 3px solid #e67e22;
+    border-left-color: #ced4da;
+    border-right-color: #ced4da;
+    position: relative;
+    top: 1px;
+}
+
+/* --- Nội dung của mỗi Tab --- */
+.tabcontent {
+    display: none;
+    padding: 25px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 0 8px 8px 8px;
+    animation: fadeIn 0.5s;
+    background-color: #FFFFFF;
+}
+
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+/* --- Tiêu đề và Nhãn --- */
+h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #343a40;
+}
+
+/* --- Form và Input --- */
+input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-size: 15px;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 8px rgba(230, 126, 34, 0.2);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- Nút bấm --- */
+button[type="submit"], #ctablesStep1Btn, #ctablesStep2Btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #e67e22, #d35400);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover, #ctablesStep1Btn:hover, #ctablesStep2Btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* --- Khu vực kết quả --- */
+.result-area {
+    margin-top: 2.5rem;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.result-header h2 {
+    margin: 0;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.result-buttons button {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.result-buttons button:hover {
+    background: #5a6268;
+}
+
+#copy-btn:hover {
+    background: #28a745;
+}
+
+#clear-btn:hover {
+    background: #dc3545;
+}
+
+pre#result-syntax {
+    background: #FFFFFF;
+    color: #2c3e50;
+    padding: 1.5rem;
+    border: 1px solid #dee2e6;
+    border-left: 5px solid #2c3e50;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 14px;
+    min-height: 150px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* --- Layout Grid cho Form --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Style riêng cho CTables Custom Dropdown --- */
+#ctablesOptionsDisplay h3, #ctablesV2 h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    background-color: #fff;
+    color: #495057;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+.dropdown-toggle:hover {
+    border-color: #e67e22;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    float: right;
+    color: #adb5bd;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 100;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 5px;
+}
+
+.dropdown-content label {
+    font-weight: 400;
+    color: #495057;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s;
+}
+.dropdown-content label:last-child {
+    border-bottom: none;
+}
+.dropdown-content label:hover {
+    background-color: #f8f9fa;
+}
+.dropdown-content input[type="checkbox"] {
+    margin-right: 12px;
+}
+
+.show {
+    display: block;
+}
+
+/* Điều chỉnh chiều cao cho các input trong Restruct */
+#Restruct input[type="number"] {
+    height: 45px;
+}
+
+#Restruct input[type="text"] {
+    height: 45px;
+}
+
+#Restruct textarea[name="variables"] {
+    min-height: 240px;
+}
+
+#Restruct textarea[name="brandNames"] {
+    min-height: 150px;
+}
+
+#Restruct textarea[name="outputVars"] {
+    min-height: 120px;
+}

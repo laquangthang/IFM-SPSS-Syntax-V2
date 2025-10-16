@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>SPSS Syntax Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="Image/ifmresearch_1.png" alt="Company Logo" id="header-logo">
+        <h1>SPSS Syntax Generator</h1>
+    </header>
+    <main>
+        <!-- Tab navigation -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTool(event, 'Reloop')">Reloop</button>
+            <button class="tablinks" onclick="openTool(event, 'Rerank')">Rerank</button>
+            <button class="tablinks" onclick="openTool(event, 'Topbox')">Top Box</button>
+            <button class="tablinks" onclick="openTool(event, 'Restruct')">Restruct</button>
+            <button class="tablinks" onclick="openTool(event, 'CodingOA')">Coding OA</button>
+            <button class="tablinks" onclick="openTool(event, 'RecodeMeans')">Recode Means</button>
+            <button class="tablinks" onclick="openTool(event, 'Ctables')">Ctables</button>
+            <button class="tablinks" onclick="openTool(event, 'CtablesV2')">Ctables V2</button>
+            <button class="tablinks" onclick="openTool(event, 'Netcode')">NET code</button>
+        </div>
+
+        <!-- Topbox Tool -->
+        <div id="Topbox" class="tabcontent">
+            <h2>Top / Bottom Box</h2>
+            <form id="topbox-form">
+                <div class="form-grid">
+                    <div>
+                        <label>1. Tên biến (cách nhau bởi dấu phẩy):</label>
+                        <input type="text" name="varNames" placeholder="Q1_1,Q1_2,Q1_3" required>
+                    </div>
+                    <div>
+                        <label>2. Nhãn biến (mỗi nhãn 1 dòng, theo thứ tự):</label>
+                        <textarea name="varLabels" rows="3" placeholder="Label for Q1_1
+Label for Q1_2
+Label for Q1_3" required></textarea>
+                    </div>
+                    <div>
+                        <label>3. Giá trị Top-Box (vd: 4,5):</label>
+                        <input type="text" name="t2b" placeholder="4,5">
+                    </div>
+                    <div>
+                        <label>4. Giá trị còn lại cho Top-Box (vd: 1,2,3):</label>
+                        <input type="text" name="nonT2b" placeholder="1,2,3">
+                    </div>
+                     <div>
+                        <label>5. Giá trị Bottom-Box (vd: 1,2):</label>
+                        <input type="text" name="b2b" placeholder="1,2">
+                    </div>
+                    <div>
+                        <label>6. Giá trị còn lại cho Bottom-Box (vd: 3,4,5):</label>
+                        <input type="text" name="nonB2b" placeholder="3,4,5">
+                    </div>
+                </div>
+                <button type="submit">Tạo cú pháp Topbox</button>
+            </form>
+        </div>
+
+        <!-- Rerank Tool -->
+        <div id="Rerank" class="tabcontent">
+            <h2>Rerank</h2>
+            <form id="rerank-form">
+                <label>1. Tên biến gốc:</label>
+                <input type="text" name="baseVar" placeholder="Q17A" required>
+                <label>2. Số lượng Rank:</label>
+                <input type="number" name="numRanks" placeholder="3" required>
+                <label>3. Danh sách nhãn (mỗi nhãn 1 dòng):</label>
+                <textarea name="labels" rows="10" placeholder="Label 1
+Label 2
+Label 3" required></textarea>
+                <button type="submit">Tạo cú pháp Rerank</button>
+            </form>
+        </div>
+        
+        <!-- Reloop Tool -->
+        <div id="Reloop" class="tabcontent">
+            <h2>Reloop & Generate Labels</h2>
+            <form id="reloop-form">
+                <div class="form-grid">
+                    <div>
+                        <label>1. Tên câu hỏi:</label>
+                        <input type="text" name="questionName" placeholder="Q20" required>
+                    </div>
+                     <div>
+                        <label>2. Số lượng thuộc tính (Attributes):</label>
+                        <input type="number" name="numAttributes" placeholder="15" required>
+                    </div>
+                    <div>
+                        <label>3. Số lượng thương hiệu (Brands):</label>
+                        <input type="number" name="numBrands" placeholder="10" required>
+                    </div>
+                    <div>
+                        <label>4. Tên câu hỏi Rebase:</label>
+                        <input type="text" name="rebaseQuestion" placeholder="Q19" required>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div>
+                        <label>5. Danh sách tên thương hiệu (mỗi tên 1 dòng):</label>
+                        <textarea name="brandNames" rows="5" required></textarea>
+                    </div>
+                    <div>
+                        <label>6. Danh sách tên thuộc tính (mỗi tên 1 dòng):</label>
+                        <textarea name="attributeTexts" rows="5" required></textarea>
+                    </div>
+                </div>
+                <button type="submit">Tạo cú pháp Reloop</button>
+            </form>
+        </div>
+        
+        <!-- CTables Tool -->
+        <div id="Ctables" class="tabcontent">
+            <h2>CTables Syntax Builder</h2>
+            <p>Xây dựng cú pháp CTABLES bằng cách xác định biến cho dòng và cột, sau đó chọn công thức.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>1. Nhập TẤT CẢ các biến (mỗi biến 1 dòng):</label>
+                    <textarea id="ctablesAllVarsInput" rows="8" placeholder="Gender
+Age_Group
+Q1_Brand_Awareness
+Q2_Brand_Usage"></textarea>
+                </div>
+                <div>
+                    <label>2. Nhập các biến cho dòng BY (lấy từ danh sách bên trái):</label>
+                    <textarea id="ctablesByVarsInput" rows="8" placeholder="Gender
+Age_Group"></textarea>
+                </div>
+            </div>
+            
+            <button id="ctablesStep1Btn" type="button">Tạo lựa chọn công thức</button>
+
+            <hr>
+            
+            <div id="ctablesOptionsDisplay">
+                <!-- Các lựa chọn công thức sẽ được tạo động ở đây -->
+            </div>
+        </div>
+
+        <!-- CTables V2 Tool -->
+        <div id="CtablesV2" class="tabcontent">
+            <h2>CTables Syntax Builder V2</h2>
+            <p>Chọn công thức trước. Với mỗi công thức được chọn, một ô để nhập danh sách biến sẽ xuất hiện tương ứng. Bước cuối cùng là tổng hợp cú pháp CTABLES.</p>
+
+            <div class="form-grid">
+                <div>
+                    <label>1. Chọn công thức:</label>
+                    <div id="ctablesV2FormulaDropdown" class="custom-dropdown">
+                        <button type="button" class="dropdown-toggle" data-target="ctablesV2FormulaContent">Chọn công thức</button>
+                        <div id="ctablesV2FormulaContent" class="dropdown-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label>2. Nhập các biến cho dòng BY (mỗi biến 1 dòng):</label>
+                    <textarea id="ctablesV2ByVarsInput" rows="6" placeholder="Gender
+Age_Group"></textarea>
+                </div>
+                <div>
+                    <label>3. Biến cho từng công thức (mỗi biến 1 dòng):</label>
+                    <div id="ctablesV2VariableBoxes"></div>
+                </div>
+            </div>
+
+            <button id="ctablesV2GenerateBtn" type="button">Tạo cú pháp V2</button>
+        </div>
+
+        <!-- Restruct Tool -->
+        <div id="Restruct" class="tabcontent">
+            <h2>VARSTOCASES Restruct</h2>
+            <form id="restruct-form">
+                <div class="form-grid">
+                    <div>
+                        <label>1. Danh sách biến (mỗi biến 1 dòng):</label>
+                        <textarea name="variables" rows="8" placeholder="Q10R1
+Q10R2
+Q10R3
+..." required></textarea>
+                    </div>
+                    <div>
+                        <label>2. Số lượng Brand:</label>
+                        <input type="number" name="numBrands" placeholder="16" required>
+                        
+                        <label>3. Tên các Brand (mỗi tên 1 dòng):</label>
+                        <textarea name="brandNames" rows="6" placeholder="Vietinbank
+Military Bank
+LPBank
+..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div>
+                        <label>4. Tên các biến output (mỗi tên 1 dòng):</label>
+                        <textarea name="outputVars" rows="4" placeholder="Q1
+Q2
+Q3
+Q4" required></textarea>
+                    </div>
+                    <div>
+                        <label>5. Biến KEEP (cách nhau bởi dấu phẩy):</label>
+                        <input type="text" name="keepVars" placeholder="Total, BN1, BN2">
+                    </div>
+                </div>
+                <button type="submit">Tạo cú pháp Restruct</button>
+            </form>
+        </div>
+
+        <!-- Coding OA Tool -->
+        <div id="CodingOA" class="tabcontent">
+            <h2>Coding Open-Ended Answers</h2>
+            <form id="coding-oa-form">
+                <div class="form-grid">
+                    <div>
+                        <label>1. Upload file Excel (Vrid, Response, R1, R2, ...Rn):</label>
+                        <input type="file" name="excelFile" accept=".xlsx,.xls" required>
+                        <small>File phải có cột 1: Vrid, cột 2: Response, cột 3+: R1, R2, ...Rn</small>
+                    </div>
+                    <div>
+                        <label>2. Upload file TXT Codelist (cho Value Labels):</label>
+                        <input type="file" name="codelistFile" accept=".txt" required>
+                        <small>Format: 1"Label 1" hoặc 1 Label 1</small>
+                    </div>
+                </div>
+                <div>
+                    <label>3. Tên biến (VD: Q18D):</label>
+                    <input type="text" name="variableName" placeholder="Q18D" required>
+                </div>
+                <button type="submit">Tạo cú pháp Coding OA</button>
+            </form>
+        </div>
+
+        <!-- Recode Means Tool -->
+        <div id="RecodeMeans" class="tabcontent">
+            <h2>Recode Means</h2>
+            <form id="recode-means-form">
+                <div class="form-grid">
+                    <div>
+                        <label>1. Khoảng giá trị (mỗi khoảng 1 dòng):</label>
+                        <textarea id="ranges-input" name="ranges" rows="6" placeholder="5,000,001 - 15,000,000 VND
+15,000,001 - 25,000,000 VND
+25,000,001 and above VND" required></textarea>
+                    </div>
+                    <div>
+                        <label>2. Means tự động tính (có thể chỉnh sửa):</label>
+                        <textarea id="means-output" name="means" rows="6" placeholder="Means sẽ hiển thị ở đây..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div>
+                        <label>3. Codes tương ứng (mỗi code 1 dòng):</label>
+                        <textarea name="codes" rows="4" placeholder="1
+2
+3" required></textarea>
+                    </div>
+                    <div>
+                        <label>4. Biến cần recode (mỗi biến 1 dòng):</label>
+                        <textarea name="variables" rows="4" placeholder="Q1
+Q2
+Q3" required></textarea>
+                    </div>
+                </div>
+                <button type="submit">Tạo cú pháp Recode Means</button>
+            </form>
+        </div>
+
+        <!-- NET Code Tool -->
+        <div id="Netcode" class="tabcontent">
+            <h2>NET Code Generator</h2>
+            <form id="netcode-form">
+                <div>
+                    <label>1. Tên câu hỏi (VD: Q11):</label>
+                    <input type="text" name="questionName" placeholder="Q11" required>
+                </div>
+                <div class="form-grid">
+                    <div>
+                        <label>2. Danh sách Code (mỗi code 1 dòng):</label>
+                        <textarea name="codes" rows="10" placeholder="30
+1
+2
+3
+4
+5
+31
+6
+7
+8
+9
+..." required></textarea>
+                    </div>
+                    <div>
+                        <label>3. Danh sách Nhãn (mỗi nhãn 1 dòng, tương ứng với code):</label>
+                        <textarea name="labels" rows="10" placeholder="Product & Solutions Quality [NET]
+This company's paint has excellent color retention and long-lasting durability
+This company's paint resists abrasion, fading, and peeling better than others
+This company offers a wide variety of colors to choose from
+...
+Commercial condition & invoicing [NET]
+This company offers attractive discounts for retailers
+This company's retail prices are competitive in the market.
+...
+Order & Delivery [NET]
+This company always keeps products in stock and ready for sale
+...
+Customer service support [NET]
+This company provides useful guidance on painting and application techniques
+...
+Sales/ Account management [NET]
+This company's sales team regularly visits and consults with retailers
+...
+Marketing support [NET]
+This company provides tinting machines to support retailers.
+...
+Others (specify)" required></textarea>
+                    </div>
+                </div>
+                <button type="submit">Tạo cú pháp NET Code</button>
+            </form>
+        </div>
+
+        <!-- Result Area -->
+        <div class="result-area">
+            <div class="result-header">
+                <h2>Kết quả Cú pháp SPSS</h2>
+                <div class="result-buttons">
+                    <button type="button" id="copy-btn" title="Copy to clipboard">📋 Copy</button>
+                    <button type="button" id="clear-btn" title="Clear result">🗑️ Clear</button>
+                </div>
+            </div>
+            <pre id="result-syntax"></pre>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
