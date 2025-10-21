@@ -1,5 +1,3 @@
-// server.js (PHIÊN BẢN NODE.JS THUẦN TÚY - ĐƠN GIẢN VÀ ỔN ĐỊNH)
-
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
