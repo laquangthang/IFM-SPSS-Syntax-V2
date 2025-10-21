@@ -367,7 +367,6 @@ function generateNetcodeSyntax(questionName, codes, labels) {
                 currentGroup = null;
             }
         }
-        // Codes không thuộc group nào (như "Others") sẽ được bỏ qua
     });
     
     // Thêm group cuối cùng
@@ -375,7 +374,6 @@ function generateNetcodeSyntax(questionName, codes, labels) {
         netGroups.push(currentGroup);
     }
     
-    // Tạo IF statements cho NET codes
     netGroups.forEach(group => {
         if (group.relatedCodes.length > 0) {
             const ifConditions = group.relatedCodes.map(code => `${questionName}R${code}=${code}`).join(' OR ');
