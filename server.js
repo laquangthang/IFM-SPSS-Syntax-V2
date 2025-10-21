@@ -119,7 +119,7 @@ function generateCodingOASyntax(data, codelistContent, variableName) {
 }
 
 // ===================================================================
-// === LOGIC CỦA CÁC SCRIPT R ĐÃ ĐƯỢC VIẾT LẠI BẰNG JAVASCRIPT ===
+// === LOGIC ===
 // ===================================================================
 
 function generateTopboxSyntax(varNames, varLabels, t2b, nonT2b, b2b, nonB2b) {
